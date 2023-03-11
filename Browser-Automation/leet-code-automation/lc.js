@@ -111,7 +111,6 @@ function questionSolver(page, answer){
         })
     })
 }
-
 function waitAndClick(selector, page){
     return new Promise(function(resolve, reject){
         let waitForModelPromise = page.waitForSelector(selector)
