@@ -76,38 +76,65 @@ function questionSolver(page, answer){
             console.log("writing code")
             return page.type('div.CodeMirror.cm-s-easymde.CodeMirror-wrap.CodeMirror-empty', answer, {delay:10})
         }).then(function(){
+            console.log("pressing control")
             let ctrlIsPressed = page.keyboard.down('Control', {delay:50})
             return ctrlIsPressed
         }).then(function(){
+            console.log("pressing a")
             let aisPressed = page.keyboard.press('KeyA', {delay: 10})
             return aisPressed
         }).then(function(){
+            console.log("pressing x")
             let xisPressed = page.keyboard.press('KeyX', {delay: 10})
             return xisPressed
         }).then(function(){
+            console.log("release control")
             let ctrlIsUnpressed = page.keyboard.up('Control', {delay:50})
             return ctrlIsUnpressed
         }).then(function(){
+            console.log("waiting for 3 seconds")
             let waitForThreeSeconds = page.waitForTimeout(3000)
             return waitForThreeSeconds
         }).then(function(){
+            console.log("clicking on cancel")
             let clickOnCanclePromise = waitAndClick('div.absolute.right-4.top-0.flex.h-10.cursor-pointer.items-center', page)
             return clickOnCanclePromise
         }).then(function(){
+            console.log("waiting for 3 seconds")
+            let waitForThreeSeconds = page.waitForTimeout(3000)
+            return waitForThreeSeconds
+        }).then(function(){
+            console.log("click on main editor")
             let mainEditorInFocusPromise = waitAndClick('div.view-lines.monaco-mouse-cursor-text', page)
             return mainEditorInFocusPromise
         }).then(function(){
+            console.log("pressing control")
             let ctrlIsPressed = page.keyboard.down('Control')
             return ctrlIsPressed
         }).then(function(){
+            console.log("pressing key A")
             let aisPressed = page.keyboard.press('A', {delay: 100})
             return aisPressed
         }).then(function(){
+            console.log("pressing key V")
             let visPresed = page.keyboard.press('V', {delay:100})
             return visPresed
         }).then(function(){
+            console.log("releasing the control")
             let ctrlIsUnpressed = page.keyboard.up('Control')
             return ctrlIsUnpressed
+        }).then(function(){
+            console.log("waiting for 3 seconds")
+            let waitForThreeSecondsPromise = page.waitForTimeout(3000)
+            return waitForThreeSecondsPromise
+        }).then(function(){
+            console.log("sumitting solution")
+            let clickSubmitButtonPromise = waitAndClick('button.bg-green-s', page)
+            return clickSubmitButtonPromise
+        }).then(function(){
+            resolve()
+        }).then(function(){
+            reject()
         })
     })
 }
